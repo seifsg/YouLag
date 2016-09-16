@@ -40,8 +40,6 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 		
-		/*TrayNotification tray = new TrayNotification("hi", "psi", NotificationType.SUCCESS);
-        tray.showAndWait();*/
 	}
 	
 	public static void main(String[] args) {
