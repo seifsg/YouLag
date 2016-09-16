@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="400.0" styleClass="bg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <CheckBox fx:id="sound_cb" layoutX="316.0" layoutY="316.0" mnemonicParsing="false" onAction="#sound_cb" selected="true" text="Sound" textFill="WHITE" AnchorPane.rightAnchor="22.0">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </CheckBox>
+      <Button fx:id="exit" layoutX="11.0" layoutY="306.0" mnemonicParsing="false" onAction="#exit" text="Exit">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="pause_resume" layoutX="314.0" layoutY="279.0" mnemonicParsing="false" onAction="#the_pause_resume_button" prefHeight="31.0" prefWidth="73.0" text="Pause">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Button>
+      <GridPane layoutX="59.0" layoutY="21.0" prefHeight="202.0" prefWidth="286.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="110.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="156.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="33.0" prefWidth="118.0" text="Host to ping" textFill="#222020">
+               <font>
+                  <Font name="Loma Bold" size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="#fcfcfc" spread="0.3" />
+               </effect>
+            </Label>
+            <TextField fx:id="host" onKeyPressed="#the_on_change_squad" styleClass="textfield" stylesheets="@application.css" text="www.google.com" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Loma" size="13.0" />
+               </font>
+            </TextField>
+            <Label text="Max ping" textFill="#111010" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Loma Bold" size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" spread="0.31" />
+               </effect>
+            </Label>
+            <TextField fx:id="timeout" onKeyPressed="#the_on_change_squad" prefHeight="33.0" prefWidth="47.0" text="200" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Loma" size="13.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="lag_ping" onKeyPressed="#the_on_change_squad" text="90" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Lag ping" GridPane.rowIndex="2">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" spread="0.3" />
+               </effect></Label>
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" layoutX="59.0" layoutY="241.0" prefHeight="26.0" prefWidth="277.0" spacing="10.0">
+         <children>
+            <Label text="Status" textFill="WHITE">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect></Label>
+            <Label fx:id="status" prefHeight="20.0" prefWidth="107.0" text="Paused">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" spread="0.3" />
+               </effect>
+            </Label>
+            <Label text="Ping" textFill="WHITE">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" spread="0.3" />
+               </effect></Label>
+            <Label fx:id="lping" text="0ms">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" spread="0.3" />
+               </effect></Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <Label layoutX="156.0" layoutY="320.0" onMouseClicked="#open_my_website" text="\@SeifSG" underline="true">
+         <textFill>
+            <LinearGradient endX="0.5673076923076923" endY="1.0" startX="0.5">
+               <stops>
+                  <Stop color="#b6ffab" />
+                  <Stop color="#b6ffab" offset="0.007407407407407408" />
+                  <Stop color="#ced0fc" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <tooltip>
+            <Tooltip autoHide="true" text="www.seifsg.com" wrapText="true" />
+         </tooltip>
+      </Label>
+   </children>
+</AnchorPane>
