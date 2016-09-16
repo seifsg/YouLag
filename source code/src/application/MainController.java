@@ -93,9 +93,8 @@ public class MainController {
 		
 	}
 	
-	// this from stackoverflow
 	private static void openWebpage(URI uri) {
-		System.out.println(uri.toString());
+
 	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 	    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
 	        try {

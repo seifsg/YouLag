@@ -54,9 +54,8 @@ public class Ping implements Runnable{
 	        	return 0;
 
 	    } catch (IOException e) {
-	        return 1; // Either timeout or unreachable or failed DNS lookup.
+	        return 1; 
 	    }
-	    
 	}
 	
 	@Override
@@ -104,7 +103,7 @@ public class Ping implements Runnable{
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
@@ -158,7 +157,7 @@ public class Ping implements Runnable{
 					player.play();
 				
 			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
