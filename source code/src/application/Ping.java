@@ -23,8 +23,9 @@ public class Ping implements Runnable{
 	private long current_ping = 0;
 	private Label lping;
 	private int lag_ping;
+	private boolean after_button;
 	
-	public Ping(String h, int t,Label l,boolean s,Label lping,int lag_ping){
+	public Ping(String h, int t,Label l,boolean s,Label lping,int lag_ping,boolean after_button){
 		
 		host = h;
 		timeout = t;
@@ -32,6 +33,7 @@ public class Ping implements Runnable{
 		sound = s;
 		this.lping = lping;
 		this.lag_ping = lag_ping;
+		this.after_button = after_button;
 		
 	}
 	
@@ -145,7 +147,8 @@ public class Ping implements Runnable{
 	}
 	
 	private void playsound(int result){
-		if(sound){
+
+		if(sound && !after_button){
 			try {
 
 				Media medafile = null;
@@ -168,12 +171,14 @@ public class Ping implements Runnable{
 				e.printStackTrace();
 			}
 		}
-		
+
+		if(after_button) after_button = false;
 	}
 	
 	public long get_current_ping(){
 		return current_ping;
 	}
+
 	
 	
 

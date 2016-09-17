@@ -25,6 +25,7 @@ public class MainController {
 	@FXML private Label lping;
 	@FXML private TextField lag_ping;
 	private boolean sound;
+	private boolean after_button_no_sound=false;
 	
 	private Ping ping;
 	
@@ -39,9 +40,8 @@ public class MainController {
 	@FXML
 	private void initialize() {
 		sound = sound_cb.isSelected();
-		ping = new Ping(host.getText(),new Integer(timeout.getText()),status,sound,lping,new Integer(lag_ping.getText()));
+		ping = new Ping(host.getText(),new Integer(timeout.getText()),status,sound,lping,new Integer(lag_ping.getText()),after_button_no_sound);
 		ping.start();
-		
 	}
 	
 	@FXML
@@ -56,8 +56,7 @@ public class MainController {
 	
 	@FXML
 	private void text_fields_keyreleased_fnc(KeyEvent event){
-		
-		
+		after_button_no_sound = true;
 		the_pause_resume_button(null);
 		
 	}
