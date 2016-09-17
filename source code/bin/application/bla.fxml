@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="350.0" prefWidth="400.0" styleClass="bg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane prefHeight="350.0" prefWidth="400.0" styleClass="bg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <CheckBox fx:id="sound_cb" layoutX="316.0" layoutY="316.0" mnemonicParsing="false" onAction="#sound_cb" selected="true" text="Sound" textFill="WHITE" AnchorPane.rightAnchor="22.0">
          <font>
@@ -52,7 +52,7 @@
                   <DropShadow blurType="ONE_PASS_BOX" color="#fcfcfc" spread="0.3" />
                </effect>
             </Label>
-            <TextField fx:id="host" onKeyPressed="#the_on_change_squad" styleClass="textfield" stylesheets="@application.css" text="www.google.com" GridPane.columnIndex="1">
+            <TextField fx:id="host" onKeyPressed="#the_on_change_squad" onKeyReleased="#text_fields_keyreleased_fnc" prefHeight="29.0" prefWidth="162.0" styleClass="textfield" stylesheets="@application.css" text="www.google.com" GridPane.columnIndex="1">
                <font>
                   <Font name="Loma" size="13.0" />
                </font>
@@ -65,12 +65,12 @@
                   <DropShadow blurType="ONE_PASS_BOX" color="WHITE" spread="0.31" />
                </effect>
             </Label>
-            <TextField fx:id="timeout" onKeyPressed="#the_on_change_squad" prefHeight="33.0" prefWidth="47.0" text="200" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="timeout" onKeyPressed="#the_on_change_squad" onKeyReleased="#text_fields_keyreleased_fnc" text="200" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Loma" size="13.0" />
                </font>
             </TextField>
-            <TextField fx:id="lag_ping" onKeyPressed="#the_on_change_squad" text="90" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="lag_ping" onKeyPressed="#the_on_change_squad" onKeyReleased="#text_fields_keyreleased_fnc" prefHeight="29.0" prefWidth="162.0" text="90" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Lag ping" GridPane.rowIndex="2">
                <effect>
                   <DropShadow blurType="ONE_PASS_BOX" color="WHITE" spread="0.3" />

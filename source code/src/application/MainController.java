@@ -53,6 +53,16 @@ public class MainController {
 		
 	}
 	
+	
+	@FXML
+	private void text_fields_keyreleased_fnc(KeyEvent event){
+		
+		
+		the_pause_resume_button(null);
+		
+	}
+	
+	
 	@FXML
 	private void the_pause_resume_button(ActionEvent event){
 		
@@ -74,9 +84,12 @@ public class MainController {
 			
 		}else{
 			
-			initialize();
+			if(fields_not_empty()){
+				initialize();
+				pause_resume.setText("Pause");
+			}
 			
-			pause_resume.setText("Pause");
+
 			
 		}
 
@@ -84,6 +97,18 @@ public class MainController {
 		
 	}
 	
+	private boolean fields_not_empty() {
+		
+		if(host.getText().isEmpty() || 
+				timeout.getText().isEmpty() ||
+				lag_ping.getText().isEmpty()
+		)
+			return false;
+		
+		return true;
+			
+	}
+
 	@FXML
 	private void sound_cb(ActionEvent e){
 		

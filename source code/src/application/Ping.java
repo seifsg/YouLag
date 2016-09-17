@@ -35,12 +35,11 @@ public class Ping implements Runnable{
 		
 	}
 	
-	public int pingHost(String host, int port, int timeout) {
+	public int pingHost(String host, int port) {
 		long start;
 	    try (Socket socket = new Socket()) {
-	    	
 	    	start = System.currentTimeMillis();
-	        socket.connect(new InetSocketAddress(host, port), timeout);
+	        socket.connect(new InetSocketAddress(host, port), 999);
 	        
 	        current_ping = System.currentTimeMillis() - start;
 	        
@@ -48,12 +47,17 @@ public class Ping implements Runnable{
 	        
 	        System.out.println(current_ping+"ms");
 	        
-	        if(current_ping>=lag_ping)
+	        if(current_ping>=timeout)
+	        	return 1;
+	        else if(current_ping>=lag_ping)
 	        	return 2;
 	        else
 	        	return 0;
 
 	    } catch (IOException e) {
+	    	
+	        Platform.runLater(()->lping.setText("E"));       
+	        
 	        return 1; 
 	    }
 	}
@@ -63,7 +67,7 @@ public class Ping implements Runnable{
 		
 		Date now = new Date();
 		while(t!=null){
-			int tmp_result = pingHost(host, 80, timeout);
+			int tmp_result = pingHost(host, 80);
 			
 			if(tmp_result == 0){
 
@@ -106,6 +110,9 @@ public class Ping implements Runnable{
 
 				e.printStackTrace();
 			}
+			
+			System.out.println("Current ping: " + current_ping + "  Status: "+result + "  Max_ping: "+timeout);
+			
 		}
 		
 	}
