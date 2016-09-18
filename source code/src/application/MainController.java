@@ -39,9 +39,16 @@ public class MainController {
 	
 	@FXML
 	private void initialize() {
-		sound = sound_cb.isSelected();
-		ping = new Ping(host.getText(),new Integer(timeout.getText()),status,sound,lping,new Integer(lag_ping.getText()),after_button_no_sound);
-		ping.start();
+		// validating input
+		
+		if( validate_textField(host,9,0,false) && 
+		validate_textField(timeout,1,3,true) &&
+		validate_textField(lag_ping,1,3,true))
+		{
+				sound = sound_cb.isSelected();
+				ping = new Ping(host.getText(),new Integer(timeout.getText()),status,sound,lping,new Integer(lag_ping.getText()),after_button_no_sound);
+				ping.start();
+		}
 	}
 	
 	@FXML
@@ -56,6 +63,7 @@ public class MainController {
 	
 	@FXML
 	private void text_fields_keyreleased_fnc(KeyEvent event){
+		
 		after_button_no_sound = true;
 		the_pause_resume_button(null);
 		
@@ -65,16 +73,6 @@ public class MainController {
 	@FXML
 	private void the_pause_resume_button(ActionEvent event){
 		
-		//validate input
-		
-		if(!timeout.getText().matches("(\\d+)?")){
-			timeout.setText("0");
-		}
-		
-		if(!lag_ping.getText().matches("(\\d+)?")){
-			lag_ping.setText("0");
-		}
-		
 		if(ping.isAlive()){
 			
 			ping.stop();
@@ -83,26 +81,30 @@ public class MainController {
 			
 		}else{
 			
-			if(fields_not_empty()){
-				initialize();
-				pause_resume.setText("Pause");
-			}
-			
 
-			
+			initialize();
+			pause_resume.setText("Pause");
+
 		}
-
-		
 		
 	}
 	
-	private boolean fields_not_empty() {
+	private boolean validate_textField(TextField t,int min_length, int max_length,boolean numbers_only) {
 		
-		if(host.getText().isEmpty() || 
-				timeout.getText().isEmpty() ||
-				lag_ping.getText().isEmpty()
-		)
+		if(t.getText().isEmpty() || t.getText().length() < min_length)
 			return false;
+		
+		if( (t.getText().length() > max_length) && (max_length > 0) ){
+			t.setText(t.getText().substring(0, max_length));
+		}
+		
+		if(numbers_only){
+			
+			if(!t.getText().matches("(\\d+)?")){
+				t.setText("0");
+			}
+			
+		}
 		
 		return true;
 			
@@ -117,6 +119,7 @@ public class MainController {
 		
 	}
 	
+	//*** This is simply to open my website when clicked on my name
 	private static void openWebpage(URI uri) {
 
 	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -136,5 +139,6 @@ public class MainController {
 			openWebpage(new URI("http://www.seifsg.com"));
 		
 	}
-
+	
+	//***
 }

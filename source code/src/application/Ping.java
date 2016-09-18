@@ -24,6 +24,7 @@ public class Ping implements Runnable{
 	private Label lping;
 	private int lag_ping;
 	private boolean after_button;
+	private boolean paused;
 	
 	public Ping(String h, int t,Label l,boolean s,Label lping,int lag_ping,boolean after_button){
 		
@@ -49,6 +50,12 @@ public class Ping implements Runnable{
 	        
 	        System.out.println(current_ping+"ms");
 	        
+	        
+	        //Some routers might give a false positive so I'm going to add this
+	        if( (current_ping <= 5) || socket.getInetAddress().toString().split("/")[1].equals("192.168.1.1") )
+	        	return 1; // Usually below 5ms means local network || 
+
+	        
 	        if(current_ping>=timeout)
 	        	return 1;
 	        else if(current_ping>=lag_ping)
@@ -68,7 +75,7 @@ public class Ping implements Runnable{
 	public void run() {
 		
 		Date now = new Date();
-		while(t!=null){
+		while(!paused){
 			int tmp_result = pingHost(host, 80);
 			
 			if(tmp_result == 0){
@@ -120,17 +127,32 @@ public class Ping implements Runnable{
 	}
 	
 	public void start(){
-		
-		t = new Thread(this,"ping");
-		t.start();
+		if(paused){
+			paused = false;
+		}else{
+			t = new Thread(this,"ping");
+			t.start();
+		}
 		
 	}
 	
 	public void stop(){
+		
 		Platform.runLater(()->status.setText("Paused"));
-		t = null;
+		setPaused(true);
 		
 	}
+	
+	
+	public boolean isPaused() {
+		return paused;
+	}
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;
+	}
+
+	
 	
 	public int getResult(){
 		return result;
